@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="FarmaciaNuevo" id="E1A5F091-8A62-9F3E-9A63-F8E1CF0812C6" version="3.5">
+<createdBy>isabe</createdBy>
+<createdTime>2021-03-31 15:08:10 UTC</createdTime>
+<ownerDesignName>Farmacia</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>E1A5F091-8A62-9F3E-9A63-F8E1CF0812C6</designId>
+</OSDM_Design>

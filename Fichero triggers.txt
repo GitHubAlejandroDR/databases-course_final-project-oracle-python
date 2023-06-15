@@ -1,0 +1,104 @@
+--FICHERO TRIGGERS O DISPARADORES
+--TRIGGER 1
+create or replace TRIGGER TRIGGER1_PROYECTO
+BEFORE DELETE ON FARMACIA
+FOR EACH ROW
+BEGIN
+	if :old.nobmedicamento = 'Aspirina' then
+    	RAISE_APPLICATION_ERROR(-20001, 'No se puede borrar Aspirina del inventario. Medicamento común');
+	end if;
+ 
+END;
+
+
+--TRIGGER 2
+create or replace TRIGGER TRIGGER2_PROYECTO
+BEFORE INSERT ON FARMACIA
+FOR EACH ROW
+DECLARE numero integer;
+BEGIN
+   if :NEW.numfarmacia > 23 THEN
+	RAISE_APPLICATION_ERROR(-20001, 'No se puede insertar farmacias con número mayor que 23');
+   end if;
+ 
+END;
+
+
+--TRIGGER 3
+create or replace TRIGGER TRIGGER3_PROYECTO
+AFTER UPDATE ON DIAGBIO
+FOR EACH ROW
+DECLARE numero INTEGER;
+BEGIN
+	if :new.pruebassangre = 'Colesterol' then
+	raise_application_error(-20000, 'Esta prueba ya está en el registro. Prueba duplicada');
+	end if;
+ 
+END;
+
+
+--TRIGGER 4
+CREATE OR REPLACE TRIGGER PACIENTEYNSS 
+BEFORE INSERT ON PACIENTE 
+FOR EACH ROW
+declare numero integer;
+BEGIN
+  if :NEW.nss < 10 THEN
+RAISE_APPLICATION_ERROR(-20002, 'No se puede insertar pacientes con nss menor a 10');
+  end if;
+END;
+
+
+--TRIGGER 5
+CREATE OR REPLACE TRIGGER PACIENTE_BORRADO
+BEFORE DELETE ON PACIENTE
+FOR EACH ROW
+BEGIN
+  insert into paciente_borrado (gener,tel,nss2)
+
+  values (:OLD.genero,:OLD.telefono,:OLD.nss);
+END;
+
+
+--TRIGGER 6
+CREATE or REPLACE TRIGGER ADINSITU_enUso
+BEFORE INSERT ON ADINSITU
+FOR EACH ROW 
+DECLARE numero integer;
+BEGIN
+    if :new.consulta_nconsulta = 14 and :new.fechaad = '25/04/21' THEN
+    RAISE_APPLICATION_ERROR(-20001, 'Esta consulta ya esta reservada para esa fecha');
+  	  end if;
+END;
+
+
+--TRIGGER 7
+CREATE OR REPLACE TRIGGER TRIGGER8_PROYECTO 
+BEFORE INSERT ON PACIENTE 
+FOR EACH ROW 
+BEGIN
+  IF :NEW.telefono not like '9%' then
+  	raise_application_error(-20000, 'No se admiten teléfonos con prefijos diferentes de 9');
+    end if;
+END;
+
+
+--TRIGGER 8
+create or replace TRIGGER ESPECIALISTAYPACIENTE
+BEFORE INSERT ON especialista
+FOR EACH ROW
+declare
+numero integer;
+BEGIN
+   select count(*) into numero
+   from especialista
+   where especialista.especialista =  :new.especialista;
+   if numero >= 3 then
+   raise_application_error(-20000, 'Especialista con más de x pacientes');
+   end if;
+  
+END;
+
+
+
+

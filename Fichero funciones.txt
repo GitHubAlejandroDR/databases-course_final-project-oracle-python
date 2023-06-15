@@ -1,0 +1,82 @@
+--FICHERO FUNCIONES
+--FUNCION 1
+CREATE OR REPLACE FUNCTION FARMACIA_FUNCION1
+RETURN VARCHAR2 AS 
+valor paciente.edad%TYPE;
+mayor_numero paciente.edad%TYPE;
+BEGIN
+    select max(edad) into mayor_numero from paciente;
+    valor :=mayor_numero;
+  RETURN (valor);
+END FARMACIA_FUNCION1;
+
+
+--FUNCION 2
+create or replace FUNCTION FUNCTION2 
+RETURN VARCHAR2 AS
+dato consulta.nconsulta%TYPE;
+m_consulta consulta.nconsulta%TYPE;
+
+BEGIN
+    select MIN(nconsulta) INTO m_consulta from consulta;
+    dato:=m_consulta;
+  RETURN (dato);
+END FUNCTION2;
+
+
+--FUNCION 3
+CREATE OR REPLACE FUNCTION fn_ObtenerStockTotal
+(nombreTratamiento IN Tespeciales.Ntratamiento%TYPE)
+
+RETURN number
+AS
+    totalStock number;
+
+BEGIN
+
+SELECT Count(*)
+INTO totalStock
+FROM tespeciales
+WHERE Ntratamiento = nombreTratamiento;
+
+RETURN totalStock;
+
+END fn_ObtenerStockTotal; 
+
+
+--FUNCION 4
+create or replace FUNCTION FUNCTION3_PROYECTO
+(
+
+  PARAM1 IN consulta.distrito%type
+) RETURN consulta.nconsulta%TYPE AS PARAM2 consulta.nconsulta%type;
+BEGIN
+	select max(consulta.maxcapadidad) INTO PARAM2 from consulta where consulta.distrito = PARAM1;
+  RETURN PARAM2;
+END FUNCTION3_PROYECTO;
+
+
+--FUNCION 5
+create or replace FUNCTION FUNCTION1_PROYECTO
+(PARAM1 number)
+
+ RETURN NUMBER IS
+ PARAM2 NUMBER;
+BEGIN
+	SELECT avg(paciente.edad) into PARAM2 from paciente where paciente.nss in ( SELECT atiende.paciente_nss FROM ATIENDE WHERE atiende.consulta_nconsulta = PARAM1 );
+	RETURN PARAM2;
+END FUNCTION1_PROYECTO;
+
+
+--FUNCION 6
+create or replace FUNCTION FUNCTION2_PROYECTO
+
+(PARAM1 consulta.nconsulta%type, PARAM2 consulta.distrito%type)
+RETURN consulta.maxcapadidad%type is PARAM3 consulta.maxcapadidad%type;
+BEGIN
+  select consulta.maxcapadidad into PARAM3 from consulta where nconsulta = param1 and distrito = param2;
+  return param3;
+END FUNCTION2_PROYECTO;
+
+
+

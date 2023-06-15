@@ -1,0 +1,46 @@
+--FICHERO CON LOS PROCEDIMIENTOS
+--PROCEDIMIENTO 1
+create or replace PROCEDURE PROCEDURE_PROYECTO1 
+AS 
+BEGIN
+    FOR micursor in (select count(adinsitu.consulta_nconsulta) as Consultas, 
+             tespeciales_ntratamiento from adinsitu group by adinsitu.tespeciales_ntratamiento) 
+    loop
+    dbms_output.put_line(micursor.Consultas || '   ' || micursor.tespeciales_ntratamiento);
+    end loop;
+
+END PROCEDURE_PROYECTO1;
+
+
+
+--PROCEDIMIENTO 2
+create or replace PROCEDURE PROCEDURE_PROYECTO2 
+(
+  PARAM1 IN diagimagenes.nconsulta%type
+) AS 
+BEGIN
+    FOR micursor 
+    in (select tipoimagen, diagimagenes."LOCALIZACIÓN" from diagimagenes where nconsulta = PARAM1)
+    loop
+        dbms_output.put_line(micursor.tipoimagen || '   ' || micursor."LOCALIZACIÓN");
+     end loop;
+
+END PROCEDURE_PROYECTO2;
+
+
+--PROCEDIMIENTO 3
+create or replace PROCEDURE PROCEDURE_PROYECTO3 
+(
+  PARAM1 IN farmacia.nobmedicamento%type,
+  PARAM2 OUT farmacia.paciente_nss%type,
+  PARAM3 OUT farmacia.numfarmacia%type 
+) AS 
+BEGIN
+    select farmacia.paciente_nss,farmacia.numfarmacia 
+    into PARAM2, PARAM3
+    from farmacia
+    where nobmedicamento = PARAM1;
+
+END PROCEDURE_PROYECTO3;
+
+

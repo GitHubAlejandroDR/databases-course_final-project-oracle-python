@@ -1,0 +1,119 @@
+group: dml
+
+paciente = {
+	genero:string, telefono:number, nss:number, edad:number
+	hombre, 952234567, 10, 25
+	hombre, 952123456, 12345678, 25
+	mujer, 952123433, 12345634, 26
+	mujer, 952123444, 12345622, 22
+	hombre, 952133456, 12335678, 12
+	mujer, 952123556, 12355678, 11
+	mujer, 9521234456, 127456678, 15
+}
+
+consulta = { 
+	nconsulta:number, distrito:string, maxcapacidad:number
+	11,centro, 25
+	123,teatinos, 25
+	33,centro, 23
+	19,oeste, 15
+	43,justicia, 25
+}
+
+especialista = {
+	especialista:string, paciente_nss:number
+	'lorenzo martinez', 12345678	
+	'jose serrano', 10
+	'maria espina', 12345634
+	'ana lorenzo', 12345622
+	'ana lorenzo', 123356678
+	'pedro perez', 12335678
+	'pedro perez', 123456678
+	'alvaro gonzalez', 12115678
+	'alvaro gonzalez', 12355678
+}
+
+especialidades = {
+	tipoespecialidad:string, nomespecialista:string
+	'cardiovascular', 'lorenzo'
+	'pulmonar', 'jose'
+	'digestivo', 'luisa'
+	'pediatria', 'ana'
+	'oncologia', 'daniel'
+	'endocrinologia', 'alvaro'
+	'traumatologia', 'maria'
+	'neurologia', 'pedro'
+}
+
+atiende = {
+	paciente_nss:number, consulta_nconsulta:number
+	10, 11
+	12345678, 123
+	12345622, 12
+	12335678, 19
+	12115678, 13
+	12355678, 43
+}
+
+realizadiag = {
+	paciente_nss:number,especialidades_nomespecialidades:string
+	12345678, 'lorenzo'
+  	10, 'jose'
+  	12345622, 'ana'
+  	12335678, 'maria'
+  	12115678, 'pedro'
+  	12355678, 'daniel'
+}
+
+farmacia = {
+  	telefono:number,numfarmacia:number,nobmedicamento:string,email:string,web:string,consulta_nconsulta:number,paciente_nss:number,tipomedicamento:string
+  	952345678, 12, 'paracetamol', 'farmacia12@gmail.com', 'www.farmacia12.com', 11, 10, 'analgesico'
+  	952456789, 23, 'ibuprofeno', 'farmacia23@gmail.com', 'www.farmacia23.com', 123, 12345678, 'antiinflamatorio'
+  	952456789, 1, 'nolotil', 'farmacia23@gmail.com', 'www.farmacia23.com', 13, 12345622, 'analgesico'
+  	952456789, 2, 'aspirina', 'farmacia2@gmail.com', 'www.farmacia2.com', 33, 12335678, 'analgesico'
+  	952456789, 3, 'trombocid', 'farmacia3@gmail.com', 'www.farmacia3.com', 12, 12115678, 'cremaantiinflamtoria'
+  	952456789, 4, 'prednisona', 'farmacia4@gmail.com', 'www.farmacia4.com', 11, 12355678, 'corticoides'
+}
+
+diagbio = { 
+ 	nconsulta:number,pruebassangre:string,tejidos:string 
+ 	11,'conteneo sanguineo','piel' 
+ 	123, 'colesterol', 'digestivo' 
+ 	13, 'transaminasas', 'digestivo' 
+ 	43, 'hemoglobina', 'oncologia' 
+ 	19, 'creatina', 'pediatrica' 
+ 	12, 'covid', 'respiratorio' 
+} 
+ 
+ 
+diagimagenes = { 
+ 	nconsulta:number,tipoimagen:string,localizacion:string 
+ 	11,'radiografia' ,'brazo' 
+ 	123,'tomografia' ,'torax' 
+ 	13,'ecografia' ,'abdomen' 
+ 	43,'fibroescan' ,'higado' 
+ 	19,'resonanciamagnetica' ,'rodilla' 
+ 	12,'tomografia' ,'cadera' 
+}
+
+tespeciales = {
+	ntratamiento:string, tipotratamiento:string
+	'ortopedia', 'pediatrica'
+	'logopedia', 'geriatrica'
+	'quimio', 'oncologia'
+	'fisio', 'trauma'
+	'tmf', 'digestivo'
+	'antipire', 'respira'
+	'stem', 'cardiolo'
+}
+
+adinsitu = {
+	tespeciales_ntratamiento:string, consulta_nconsulta:number, fechaad:date
+	'ortopedia' , 11, 2021-04-25
+	'logopedia' , 123, 2021-05-23
+	'quimio' , 13, 2021-05-03
+	'fisio' , 43, 2021-04-23
+	'tmf' , 19, 2021-03-23
+	'antipire' , 12, 2021-01-23
+	'stem' , 12, 2021-07-23
+}
